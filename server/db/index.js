@@ -1,11 +1,12 @@
 const db = require('./db');
-const { Accessory, Phone } = require('./models');
+const { Accessory } = require('./models/Accessory');
+const { Phone } = require('./models/Phone');
 
 Phone.hasMany(Accessory);
 Accessory.belongsTo(Phone);
 
 const syncAndSeed = async () => {
-  await db.sync({ force: true });
+  await db.sync();
 
   const [iPhone11ProMax, SamsungZFold2, LGVelvet, OnePlus8] = await Promise.all(
     [
@@ -14,7 +15,7 @@ const syncAndSeed = async () => {
         price: 1100,
         battery: '4000mAh',
         is5GCapable: false,
-        pictureUrl:
+        imageURL:
           '/Users/Laziz/Fullstack/dealers-choice-2/server/public/img/iPhone_11_Pro_Max_MG_2_carousel.png',
       }),
       Phone.create({
@@ -22,7 +23,7 @@ const syncAndSeed = async () => {
         price: 2000,
         battery: '4500mAh',
         is5GCapable: true,
-        pictureUrl:
+        imageURL:
           '/Users/Laziz/Fullstack/dealers-choice-2/server/public/img/ZFOLD2.png',
       }),
       Phone.create({
@@ -30,7 +31,7 @@ const syncAndSeed = async () => {
         price: 600,
         battery: '4000mAh',
         is5GCapable: true,
-        pictureUrl:
+        imageURL:
           '/Users/Laziz/Fullstack/dealers-choice-2/server/public/img/LGVELVET.png',
       }),
       Phone.create({
@@ -38,7 +39,7 @@ const syncAndSeed = async () => {
         price: 1100,
         battery: '4300mAh',
         is5GCapable: true,
-        pictureUrl:
+        imageURL:
           '/Users/Laziz/Fullstack/dealers-choice-2/server/public/img/ONEPLUS8.png',
       }),
     ]
@@ -46,26 +47,26 @@ const syncAndSeed = async () => {
 
   const [cover, screenProtector, audio, charger] = await Promise.all([
     Accessory.create({
-      manufacaturer: 'Speck',
+      manufacturer: 'Speck',
       category: 'cover',
       price: 40,
       warranty: '3-years',
     }),
 
     Accessory.create({
-      manufacaturer: 'ZAGG',
-      category: 'screen-protector',
+      manufacturer: 'ZAGG',
+      category: 'screen protector',
       price: 50,
       warranty: 'lifetime',
     }),
     Accessory.create({
-      manufacaturer: 'JBL',
+      manufacturer: 'JBL',
       category: 'audio',
       price: 150,
       warranty: '3-years',
     }),
     Accessory.create({
-      manufacaturer: 'ubioLabs',
+      manufacturer: 'ubioLabs',
       category: 'charger',
       price: 50,
       warranty: 'one-year',

@@ -41,8 +41,9 @@ const Accessory = db.define(
     hooks: {
       beforeCreate: function (accessory) {
         const newYorkTaxRate = 8.88;
-        accessory.price =
-          accessory.price + accessory.price * (newYorkTaxRate / 100);
+        accessory.price = Math.floor(
+          Math.round(accessory.price + accessory.price * (newYorkTaxRate / 100))
+        );
       },
     },
   }
@@ -56,4 +57,6 @@ Accessory.findByManufacturer = function (manufacturer) {
   });
 };
 
-module.exports = Accessory;
+module.exports = {
+  Accessory,
+};

@@ -47,4 +47,6 @@ Phone.findBy5GCapability = function () {
   });
 };
 
-module.exports = Phone;
+module.exports = {
+  Phone,
+};
