@@ -6,13 +6,14 @@ Phone.hasMany(Accessory);
 Accessory.belongsTo(Phone);
 
 const syncAndSeed = async () => {
-  await db.sync();
+  await db.sync({ force: true });
 
   const [iPhone11ProMax, SamsungZFold2, LGVelvet, OnePlus8] = await Promise.all(
     [
       Phone.create({
         model: 'iPhone11ProMax',
         price: 1100,
+        camera: '12MP',
         battery: '4000mAh',
         is5GCapable: false,
         imageURL:
@@ -21,6 +22,7 @@ const syncAndSeed = async () => {
       Phone.create({
         model: 'SamsungZFold2',
         price: 2000,
+        camera: '12MP',
         battery: '4500mAh',
         is5GCapable: true,
         imageURL:
@@ -29,6 +31,7 @@ const syncAndSeed = async () => {
       Phone.create({
         model: 'LGVelvet',
         price: 600,
+        camera: '48MP',
         battery: '4000mAh',
         is5GCapable: true,
         imageURL:
@@ -37,6 +40,7 @@ const syncAndSeed = async () => {
       Phone.create({
         model: 'OnePlus8',
         price: 1100,
+        camera: '48MP',
         battery: '4300mAh',
         is5GCapable: true,
         imageURL:

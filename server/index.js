@@ -35,7 +35,7 @@ const init = async () => {
       console.log(`server is listening on port: ${port}`);
     });
   } catch (err) {
-    console.log('There was an error associated with starting the server!');
+    console.log('Server error!');
   }
 };
 

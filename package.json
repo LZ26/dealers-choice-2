@@ -6,9 +6,9 @@
   "scripts": {
     "test": "mocha \"**/*.spec.js\"",
     "build": "webpack",
-    "build:dev": "webpack -w",
+    "build:dev": "npm run build -- --watch --mode development",
     "start": "node server/index.js",
-    "start:dev": "npm run build && nodemon --ignore client --ignore server/public"
+    "start:dev": "nodemon server --ignore client --ignore server/public & npm run build:dev"
   },
   "author": "",
   "license": "ISC",
